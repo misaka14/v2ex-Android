@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <com.wutouqishi.v2ex_android.view.NoScrollViewPager
+        android:id="@+id/nsvp_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.wutouqishi.v2ex_android.view.NoScrollViewPager>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BCBCBC"
+        android:layout_above="@+id/rg_tabbar"
+        ></View>
+
+    <RadioGroup
+        android:id="@+id/rg_tabbar"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:paddingTop="5dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:background="#F5F5F6"
+        android:checkedButton="@+id/rb_home"
+        >
+
+        <RadioButton
+            android:id="@+id/rb_home"
+            style="@style/TabBarTheme"
+            android:text="首页"
+            android:drawableTop="@drawable/tabbar_home_selector"
+            />
+
+        <RadioButton
+            android:id="@+id/rb_node"
+            style="@style/TabBarTheme"
+            android:text="节点"
+            android:drawableTop="@drawable/tabbar_node_selector"
+            />
+
+        <RadioButton
+            android:id="@+id/rb_message"
+            style="@style/TabBarTheme"
+            android:text="消息"
+            android:drawableTop="@drawable/tabbar_message_selector"
+            />
+
+        <RadioButton
+            android:id="@+id/rb_notification"
+            style="@style/TabBarTheme"
+            android:text="通知"
+            android:drawableTop="@drawable/tabbar_notification_selector"
+            />
+
+        <RadioButton
+            android:id="@+id/rb_more"
+            style="@style/TabBarTheme"
+            android:text="更多"
+            android:drawableTop="@drawable/tabbar_more_selector"
+            />
+    </RadioGroup>
+</RelativeLayout>
