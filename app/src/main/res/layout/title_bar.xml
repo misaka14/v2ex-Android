@@ -5,7 +5,18 @@
     android:background="#28ad54"
     >
 
+    <ImageButton
+        android:id="@+id/ib_back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="3dp"
+        android:background="@mipmap/tabbar_back"
+        android:layout_centerVertical="true"
+        android:visibility="invisible"
+        />
+
     <TextView
+        android:id="@+id/tv_tabbar_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

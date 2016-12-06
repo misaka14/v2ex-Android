@@ -43,7 +43,7 @@ public class HomePager extends BasePager
     public void initData() {
         super.initData();
 
-        View view = View.inflate(mActivity, R.layout.home_pager, null);
+        View view = View.inflate(mActivity, R.layout.pager_home, null);
         tpi_title = (TabPageIndicator) view.findViewById(R.id.tpi_title);
         vp_topics = (ViewPager) view.findViewById(R.id.vp_topics);
         fl_content.addView(view);
@@ -66,7 +66,7 @@ public class HomePager extends BasePager
         topicPagers = new ArrayList<BaseTopicPager>();
         for (int i = 0; i < nodes.size(); i++)
         {
-            HomeTopicPager pager = new HomeTopicPager(mActivity);
+            HomeTopicPager pager = new HomeTopicPager(mActivity, nodes.get(i).getNodeUrl());
             topicPagers.add(pager);
         }
 

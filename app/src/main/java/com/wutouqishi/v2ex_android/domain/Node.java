@@ -5,9 +5,9 @@ package com.wutouqishi.v2ex_android.domain;
  */
 public class Node
 {
-    private String name;
+    String name;
 
-    private String nodeUrl;
+    String nodeUrl;
 
     public Node() {
 

@@ -29,7 +29,7 @@ public class BasePager
 
     public View initView()
     {
-        View view = View.inflate(mActivity, R.layout.base_pager, null);
+        View view = View.inflate(mActivity, R.layout.pager_base, null);
 
         fl_content = (FrameLayout) view.findViewById(R.id.fl_content);
         System.out.println("fl_content:" + fl_content);

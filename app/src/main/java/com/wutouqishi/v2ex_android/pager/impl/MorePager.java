@@ -1,16 +1,21 @@
 package com.wutouqishi.v2ex_android.pager.impl;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.wutouqishi.v2ex_android.LoginActivity;
+import com.wutouqishi.v2ex_android.R;
 import com.wutouqishi.v2ex_android.pager.BasePager;
 
 /**
  * Created by gengjie on 16/9/7.
  */
-public class MorePager extends BasePager
+public class MorePager extends BasePager implements View.OnClickListener
 {
     public MorePager(Activity activity) {
         super(activity);
@@ -20,12 +25,18 @@ public class MorePager extends BasePager
     public void initData() {
         super.initData();
 
-        TextView tv_title = new TextView(mActivity);
-        tv_title.setText("更多");
-        tv_title.setTextColor(Color.GREEN);
-        tv_title.setTextSize(30);
-        tv_title.setGravity(Gravity.CENTER);
+        View view = View.inflate(mActivity, R.layout.pager_more, null);
 
-        fl_content.addView(tv_title);
+        Button btn_login = (Button) view.findViewById(R.id.btn_login);
+        btn_login.setOnClickListener(this);
+
+        fl_content.addView(view);
+    }
+
+    @Override
+    public void onClick(View view)
+    {
+        Intent intent = new Intent(mActivity, LoginActivity.class);
+        mActivity.startActivity(intent);
     }
 }

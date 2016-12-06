@@ -1,11 +1,15 @@
 package com.wutouqishi.v2ex_android.pager.impl;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -14,9 +18,12 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.baoyz.widget.PullRefreshLayout;
 import com.wutouqishi.v2ex_android.R;
+import com.wutouqishi.v2ex_android.TopicDetailActivity;
 import com.wutouqishi.v2ex_android.Util.HomeUtil;
 import com.wutouqishi.v2ex_android.domain.Topic;
+import com.wutouqishi.v2ex_android.global.GlobalConstants;
 import com.wutouqishi.v2ex_android.pager.BaseTopicPager;
 
 import org.w3c.dom.Text;
@@ -31,15 +38,19 @@ import java.util.ArrayList;
 /**
  * Created by gengjie on 16/9/7.
  */
-public class HomeTopicPager extends BaseTopicPager
+public class HomeTopicPager extends BaseTopicPager implements AdapterView.OnItemClickListener
 {
     private ListView lv_topic;
 
     private HomeTopicAdapter homeTopicAdapter;
 
+    private String url;
+
     private int currentPage;
 
     private ArrayList<Topic> topics;
+
+    private SwipeRefreshLayout srl_refresh;
 
     private Handler handler = new Handler(){
         @Override
@@ -47,20 +58,25 @@ public class HomeTopicPager extends BaseTopicPager
             super.handleMessage(msg);
             topics = (ArrayList<Topic>) msg.obj;
             homeTopicAdapter.notifyDataSetChanged();
+            srl_refresh.setRefreshing(false);
         }
     };
 
-    public HomeTopicPager(Activity activity) {
+    public HomeTopicPager(Activity activity, String url) {
         super(activity);
+        this.url = url;
     }
 
     @Override
     public View initView() {
         View view = View.inflate(mActivity, R.layout.home_topic_pager, null);
 
+        srl_refresh = (SwipeRefreshLayout) view.findViewById(R.id.srl_refresh);
         lv_topic = (ListView) view.findViewById(R.id.lv_topic);
         topics = new ArrayList<Topic>();
         homeTopicAdapter = new HomeTopicAdapter();
+
+        lv_topic.setOnItemClickListener(this);
         return view;
     }
 
@@ -68,14 +84,30 @@ public class HomeTopicPager extends BaseTopicPager
     public void initData() {
         super.initData();
 
-        loadDataFromServer();
+        // 自动下拉刷新
+        srl_refresh.post(new Runnable() {
+            @Override
+            public void run() {
+                srl_refresh.setRefreshing(true);
+                loadDataFromServer();
+            }
+        });
+
+        srl_refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadDataFromServer();
+            }
+        });
 
         lv_topic.setAdapter(homeTopicAdapter);
+
     }
 
     private void loadDataFromServer()
     {
-        HomeUtil.parseTopicWithHTML("", handler);
+        String url = GlobalConstants.SERVER_URL + this.url;
+        HomeUtil.parseTopicWithHTML(url, handler);
 //        RequestParams params = new RequestParams("https://www.v2ex.com/?tab=creative");
 //        x.http().get(params, new Callback.CommonCallback<String>() {
 //            @Override
@@ -102,6 +134,19 @@ public class HomeTopicPager extends BaseTopicPager
 //
 //            }
 //        });
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+    {
+
+        Topic topic = topics.get(i);
+        System.out.println("onItemClick-topic:" + topic);
+        Intent intent = new Intent(mActivity, TopicDetailActivity.class);
+        intent.putExtra("topic", topic);
+        mActivity.startActivity(intent);
+        mActivity.overridePendingTransition(R.anim.next_in_anim, R.anim.next_out_anim);
+
     }
 
     class HomeTopicAdapter extends BaseAdapter
@@ -148,7 +193,7 @@ public class HomeTopicPager extends BaseTopicPager
 
             Topic topic = topics.get(i);
 //            System.out.println("topic:" + topic);
-            ImageOptions options = new ImageOptions.Builder().setRadius(DensityUtil.dip2px(3)).build();
+            ImageOptions options = new ImageOptions.Builder().setRadius(DensityUtil.dip2px(3)).setLoadingDrawableId(R.mipmap.topic_avatar_normal).build();
             x.image().bind(viewHolder.iv_avatar, topic.getAvatarURL(), options);
             viewHolder.tv_author.setText(topic.getAuthor());
             viewHolder.btn_node.setText(topic.getNode());

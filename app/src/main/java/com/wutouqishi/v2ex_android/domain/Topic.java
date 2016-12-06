@@ -1,6 +1,8 @@
 package com.wutouqishi.v2ex_android.domain;
 
-public class Topic
+import java.io.Serializable;
+
+public class Topic implements Serializable
 {
     String avatarURL;
 

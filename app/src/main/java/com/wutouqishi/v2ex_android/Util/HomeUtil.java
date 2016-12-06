@@ -1,5 +1,6 @@
 package com.wutouqishi.v2ex_android.Util;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -10,6 +11,9 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import com.wutouqishi.v2ex_android.domain.TopicComment;
+import com.wutouqishi.v2ex_android.domain.TopicDetail;
 import com.wutouqishi.v2ex_android.global.GlobalConstants;
 
 import java.io.IOException;
@@ -27,10 +31,9 @@ public class HomeUtil
             @Override
             public void run() {
                 ArrayList<Topic> topics = new ArrayList<Topic>();
-                String URL = "https://www.v2ex.com/?tab=creative";
                 Document doc = null;
                 try {
-                    doc = Jsoup.connect(URL).get();
+                    doc = Jsoup.connect(url).get();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -74,7 +77,8 @@ public class HomeUtil
                     }
                     Topic topic = new Topic();
                     topic.setAvatarURL(GlobalConstants.V2EXHTTP + avatarE.attr("src"));
-                    topic.setDetailUrl(GlobalConstants.SERVER_URL + avatarE.attr("href"));
+                    topic.setDetailUrl(GlobalConstants.SERVER_URL + titleE.attr("href"));
+                    System.out.println("href"+ titleE.attr("href"));
                     topic.setTitle(titleE.text());
                     topic.setNode(nodeE.text());
                     topic.setAuthor(authorE.text());
@@ -91,4 +95,71 @@ public class HomeUtil
         }).start();
     }
 
+    public static void parseTopicWithDetailUrl(final String url, final Handler handler, final Context context)
+    {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    ArrayList topicDetails = new ArrayList();
+
+                    Document doc = Jsoup.connect(url).get();
+                    //System.out.println("doc:" + doc);
+
+                    TopicDetail topicDetail = new TopicDetail();
+
+
+                    // 正文
+                    Element topicContentE = doc.select("div.topic_content").get(0);
+                    Element boxE = doc.select("div.box").get(1);
+
+                    String commentHtml = boxE.html();
+                      System.out.println("commentHTML:" + commentHtml);
+                    String content = "<!DOCTYPE HTML><html><meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0' name='viewport'><head> " + AssetsUtil.getAssetsFile("light.css", context)+ "</head><body>" + topicContentE.html() + commentHtml+ "</body></html>";
+                    topicDetail.setContent(content);
+                    System.out.println("content:" + content);
+                    topicDetails.add(topicDetail);
+
+
+
+                    // 评论
+//                    Elements cellEs = doc.select("div.cell");
+//                    for (Element cell : cellEs)
+//                    {
+//                        Elements reply_contentEs = cell.select("div.reply_content");
+//                        if (reply_contentEs.size() == 0)
+//                        {
+//                            continue;
+//                        }
+//
+//                        Element reply_contentE = reply_contentEs.get(0);
+//
+//                        Element noE = cell.select("span.no").get(0);
+//
+//                        Element authorE = cell.select("a.dark").get(0);
+//
+//                        Element avatarE = cell.select("img.avatar").get(0);
+//
+//                        Element smallE = cell.select("span.small").get(0);
+//
+//                        TopicComment topicComment = new TopicComment();
+//                        topicComment.setReply_content(reply_contentE.text());
+//                        topicComment.setFloor(noE.text());
+//                        topicComment.setAuthor(authorE.text());
+//                        topicComment.setAvatar(GlobalConstants.V2EXHTTP + avatarE.attr("src"));
+//                        topicComment.setReplyTime(smallE.text());
+//
+//                        topicDetails.add(topicComment);
+//                    }
+
+                    Message msg = Message.obtain();
+                    msg.obj = topicDetails;
+                    handler.sendMessage(msg);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
 }
