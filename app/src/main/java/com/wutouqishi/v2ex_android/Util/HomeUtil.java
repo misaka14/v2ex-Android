@@ -1,9 +1,8 @@
-package com.wutouqishi.v2ex_android.Util;
+package com.wutouqishi.v2ex_android.util;
 
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
 
 import com.wutouqishi.v2ex_android.domain.Topic;
 
@@ -12,7 +11,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.wutouqishi.v2ex_android.domain.TopicComment;
 import com.wutouqishi.v2ex_android.domain.TopicDetail;
 import com.wutouqishi.v2ex_android.global.GlobalConstants;
 

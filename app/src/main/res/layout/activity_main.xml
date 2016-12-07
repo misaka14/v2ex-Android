@@ -6,12 +6,12 @@
     android:orientation="vertical"
     >
 
-    <com.wutouqishi.v2ex_android.view.NoScrollViewPager
+    <com.wutouqishi.v2ex_android.ui.view.NoScrollViewPager
         android:id="@+id/nsvp_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </com.wutouqishi.v2ex_android.view.NoScrollViewPager>
+    </com.wutouqishi.v2ex_android.ui.view.NoScrollViewPager>
 
     <View
         android:layout_width="match_parent"

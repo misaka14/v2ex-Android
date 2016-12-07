@@ -1,4 +1,4 @@
-package com.wutouqishi.v2ex_android.Util;
+package com.wutouqishi.v2ex_android.util;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;

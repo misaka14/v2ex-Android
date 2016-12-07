@@ -2,7 +2,6 @@ package com.wutouqishi.v2ex_android.pager.impl;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,24 +11,19 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.baoyz.widget.PullRefreshLayout;
 import com.wutouqishi.v2ex_android.R;
-import com.wutouqishi.v2ex_android.TopicDetailActivity;
-import com.wutouqishi.v2ex_android.Util.HomeUtil;
+import com.wutouqishi.v2ex_android.ui.activity.TopicDetailActivity;
+import com.wutouqishi.v2ex_android.util.HomeUtil;
 import com.wutouqishi.v2ex_android.domain.Topic;
 import com.wutouqishi.v2ex_android.global.GlobalConstants;
 import com.wutouqishi.v2ex_android.pager.BaseTopicPager;
 
-import org.w3c.dom.Text;
-import org.xutils.common.Callback;
 import org.xutils.common.util.DensityUtil;
-import org.xutils.http.RequestParams;
 import org.xutils.image.ImageOptions;
 import org.xutils.x;
 

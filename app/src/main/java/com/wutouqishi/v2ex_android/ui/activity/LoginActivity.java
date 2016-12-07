@@ -1,15 +1,14 @@
-package com.wutouqishi.v2ex_android;
+package com.wutouqishi.v2ex_android.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
-import com.wutouqishi.v2ex_android.Util.LoginUtil;
+import com.wutouqishi.v2ex_android.R;
+import com.wutouqishi.v2ex_android.util.LoginUtil;
 
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
@@ -45,17 +44,17 @@ public class LoginActivity extends AppCompatActivity
         String username = et_username.getText().toString().trim();
         String password = et_password.getText().toString().trim();
 
-        loginUtil.getLoginRequestParam(this, username, password, new LoginUtil.CompleteListener() {
-            @Override
-            public void success() {
-
-            }
-
-            @Override
-            public void failed() {
-
-            }
-        });
+//        loginUtil.getLoginRequestParam(this, username, password, new LoginUtil.CompleteListener() {
+//            @Override
+//            public void success() {
+//
+//            }
+//
+//            @Override
+//            public void failed() {
+//
+//            }
+//        });
 
     }
 

@@ -1,4 +1,4 @@
-package com.wutouqishi.v2ex_android;
+package com.wutouqishi.v2ex_android.ui.activity;
 
 
 import android.app.Activity;
@@ -10,13 +10,14 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.RadioGroup;
 
+import com.wutouqishi.v2ex_android.R;
 import com.wutouqishi.v2ex_android.pager.BasePager;
 import com.wutouqishi.v2ex_android.pager.impl.HomePager;
 import com.wutouqishi.v2ex_android.pager.impl.MessagePager;
 import com.wutouqishi.v2ex_android.pager.impl.MorePager;
 import com.wutouqishi.v2ex_android.pager.impl.NodePager;
 import com.wutouqishi.v2ex_android.pager.impl.NotificationPager;
-import com.wutouqishi.v2ex_android.view.NoScrollViewPager;
+import com.wutouqishi.v2ex_android.ui.view.NoScrollViewPager;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -43,9 +44,6 @@ public class MainActivity extends Activity {
         x.view().inject(this);
         
         initData();
-
-
-
     }
 
     private void initData()

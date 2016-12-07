@@ -1,4 +1,4 @@
-package com.wutouqishi.v2ex_android;
+package com.wutouqishi.v2ex_android.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
+
+import com.wutouqishi.v2ex_android.R;
 
 /**
  * Created by gengjie on 16/9/7.

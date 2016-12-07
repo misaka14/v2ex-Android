@@ -1,4 +1,4 @@
-package com.wutouqishi.v2ex_android.view;
+package com.wutouqishi.v2ex_android.ui.view;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
