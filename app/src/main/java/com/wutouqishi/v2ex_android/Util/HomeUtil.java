@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
+import com.orhanobut.logger.Logger;
 import com.wutouqishi.v2ex_android.domain.Topic;
 
 import org.jsoup.Jsoup;
@@ -16,6 +17,8 @@ import com.wutouqishi.v2ex_android.global.GlobalConstants;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import static android.util.Log.INFO;
 
 /**
  * Created by gengjie on 16/9/7.
@@ -52,6 +55,7 @@ public class HomeUtil
                     Element authorE = strongEs.get(0).select("a").get(0);
 
                     Elements commentCountEs = cellItemE.select("a.count_livid");
+
 
                     String commentCount = "";
                     if (commentCountEs.size() > 0)
@@ -112,10 +116,12 @@ public class HomeUtil
                     Element boxE = doc.select("div.box").get(1);
 
                     String commentHtml = boxE.html();
-                      System.out.println("commentHTML:" + commentHtml);
+//                      System.out.println("commentHTML:" + commentHtml);
                     String content = "<!DOCTYPE HTML><html><meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0' name='viewport'><head> " + AssetsUtil.getAssetsFile("light.css", context)+ "</head><body>" + topicContentE.html() + commentHtml+ "</body></html>";
                     topicDetail.setContent(content);
-                    System.out.println("content:" + content);
+//                    Logger.init("parseTopicWithDetailUrl");
+                    //Logger.i("content:", content);
+                    Logger.log(INFO, "parseTopicWithDetailUrl", content, null);
                     topicDetails.add(topicDetail);
 
 

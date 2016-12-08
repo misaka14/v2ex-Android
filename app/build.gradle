@@ -29,4 +29,5 @@ dependencies {
     compile project(':ViewPagerIndicatorLib')
     compile files('libs/jsoup-1.9.2.jar')
     compile 'com.mcxiaoke.volley:library:1.0.19'
+    compile 'com.orhanobut:logger:1.15'
 }

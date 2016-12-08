@@ -5,7 +5,7 @@ package com.wutouqishi.v2ex_android.global;
  */
 public class GlobalConstants
 {
-    public static final String SERVER_URL = "https://www.v2ex.com";
+    public static final String SERVER_URL = "http://www.v2ex.com";
 
     public static final String LOGINURL = "https://www.v2ex.com/signin";
 

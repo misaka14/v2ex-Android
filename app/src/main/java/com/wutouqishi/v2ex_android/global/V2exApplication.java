@@ -4,6 +4,9 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 
+import com.orhanobut.logger.LogLevel;
+import com.orhanobut.logger.Logger;
+
 import org.xutils.x;
 
 /**
@@ -21,6 +24,9 @@ public class V2exApplication extends Application
 
         x.Ext.init(this);
 //        x.Ext.setDebug(BuildConfig.DEBUG); // 是否输出debug日志,开启debug会影响性能
+        Logger.init("v2ex");                 // default PRETTYLOGGER or use just init()
+
+
 
         context = getApplicationContext();
         handler = new Handler();

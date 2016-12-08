@@ -29,19 +29,7 @@ public class HomeDetailContentHolder extends BaseHolder<TopicDetail> {
     public View initView() {
 
         WebView webView = (WebView) UIUtils.inflate(R.layout.layout_home_detail_content);
-        InputStreamReader inputReader = null;
-        try {
-            inputReader = new InputStreamReader(
-                    UIUtils.getContext().getResources().getAssets().open("light.css"));
-            BufferedReader bufReader = new BufferedReader(inputReader);
-            String line = "";
-            String Result = "";
-            while ((line = bufReader.readLine()) != null)
-                Result += line;
-            System.out.println("result:" + Result);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         return webView;
     }
 

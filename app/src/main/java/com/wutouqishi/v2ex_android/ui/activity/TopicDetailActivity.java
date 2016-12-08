@@ -6,6 +6,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -71,6 +72,7 @@ public class TopicDetailActivity extends BaseAcitivy
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_topic_detail);
+
 
         x.view().inject(this);
 
