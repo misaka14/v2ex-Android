@@ -1,7 +1,4 @@
 <style type="text/css">
-  body {
-    margin: 0px;
-  }
 body > a {
     padding: 10px;
 }
@@ -443,6 +440,8 @@ ol {
     font-size: 15px;
     padding: 10px;
     text-align: left;
+    margin-left: -10px;
+    margin-right: -10px;
 }
 
 .cell_tabs {
@@ -1497,10 +1496,6 @@ a.btn_hero:hover {
 .markdown_body td, .markdown_body th {
     border: 1px solid #e2e2e2;
     padding: 6px 10px;
-}
-
-.markdown_body {
-    padding: 10px;
 }
 
 .highlight {

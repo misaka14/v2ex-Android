@@ -116,9 +116,36 @@ public class HomeUtil
                     Element topicContentE = doc.select("div.topic_content").get(0);
                     Element boxE = doc.select("div.box").get(1);
 
-                    String commentHtml = boxE.html();
+                    Elements cells = boxE.select("div.cell");
+                    Element lastCell = cells.get(cells.size() - 1);
+
+                    String content;
+                    String commentHtml;
+                    if (StringUtils.isEmpty(lastCell.attr("id")))
+                    {
+                        commentHtml = boxE.html();
 //                      System.out.println("commentHTML:" + commentHtml);
-                    String content = "<!DOCTYPE HTML><html><meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0' name='viewport'><head> " + AssetsUtil.getAssetsFile("light.css", context)+ "</head><body>" + topicContentE.html() + commentHtml+ "</body></html>";
+                        content = "<!DOCTYPE HTML><html><meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0' name='viewport'><head> " + AssetsUtil.getAssetsFile("light.css", context)+ "</head><body>" + topicContentE.html() + commentHtml+ "</body></html>";
+
+                    }
+                    else
+                    {
+                        StringBuffer sb = new StringBuffer();
+                        cells.remove(cells.size() - 1);
+                        cells.remove(1);
+
+                        for (Element cell : cells)
+                        {
+                            sb.append(cell.outerHtml());
+                        }
+                        commentHtml = sb.toString();
+                    }
+                    content = "<!DOCTYPE HTML><html><meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0' name='viewport'><head> " + AssetsUtil.getAssetsFile("light.css", context)+ "</head><body>" + topicContentE.html() + commentHtml+ "</body></html>";
+
+
+                    //String commentHtml = boxE.html();
+//                      System.out.println("commentHTML:" + commentHtml);
+                    //content = "<!DOCTYPE HTML><html><meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0' name='viewport'><head> " + AssetsUtil.getAssetsFile("light.css", context)+ "</head><body>" + topicContentE.html() + commentHtml+ "</body></html>";
 
 //                    Logger.init("parseTopicWithDetailUrl");
 

@@ -111,7 +111,8 @@ public class TopicDetailActivity extends BaseAcitivy
     public void initData()
     {
 //        String url = "https://www.v2ex.com/t/326059";
-        String url = mTopic.getDetailUrl();
+        String url = "https://www.v2ex.com/t/326182#reply119";  // 超过1百条评论
+//        String url = mTopic.getDetailUrl();
         Logger.i("detailUrl", url);
         HomeUtil.parseTopicWithDetailUrl(url, myHandler, this);
     }
