@@ -30,6 +30,7 @@ public class HomeDetailContentHolder extends BaseHolder<TopicDetail> {
 
         WebView webView = (WebView) UIUtils.inflate(R.layout.layout_home_detail_content);
 
+
         return webView;
     }
 

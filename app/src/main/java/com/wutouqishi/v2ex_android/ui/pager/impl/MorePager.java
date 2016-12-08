@@ -1,4 +1,4 @@
-package com.wutouqishi.v2ex_android.pager.impl;
+package com.wutouqishi.v2ex_android.ui.pager.impl;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import com.wutouqishi.v2ex_android.ui.activity.LoginActivity;
 import com.wutouqishi.v2ex_android.R;
-import com.wutouqishi.v2ex_android.pager.BasePager;
+import com.wutouqishi.v2ex_android.ui.pager.BasePager;
 
 /**
  * Created by gengjie on 16/9/7.

@@ -4,15 +4,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
 import com.wutouqishi.v2ex_android.R;
-import com.wutouqishi.v2ex_android.ui.holder.HomeDetailCommentHolder;
 import com.wutouqishi.v2ex_android.ui.holder.HomeDetailContentHolder;
 import com.wutouqishi.v2ex_android.ui.holder.HomeDetailHeaderHolder;
 import com.wutouqishi.v2ex_android.util.HomeUtil;
@@ -24,7 +22,6 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by gengjie on 16/9/10.
@@ -42,9 +39,10 @@ public class TopicDetailActivity extends BaseAcitivy
 
             ArrayList topicDetails = (ArrayList) msg.obj;
             topicDetail = (TopicDetail) topicDetails.get(0);
-            System.out.println("topicDetails:" + topicDetails);
+//            System.out.println("topicDetails:" + topicDetails);
 
             homeDetailContentHolder.setData(topicDetail);
+            fl_loading.setVisibility(View.GONE);
         }
     };
 
@@ -60,8 +58,8 @@ public class TopicDetailActivity extends BaseAcitivy
     @ViewInject(R.id.fl_content)
     private FrameLayout fl_content;
 
-    @ViewInject(R.id.fl_comment)
-    private FrameLayout fl_comment;
+    @ViewInject(R.id.fl_loading)
+    private FrameLayout fl_loading;
 
     private HomeDetailContentHolder homeDetailContentHolder;
 
@@ -107,16 +105,14 @@ public class TopicDetailActivity extends BaseAcitivy
         homeDetailContentHolder = new HomeDetailContentHolder();
         fl_content.addView(homeDetailContentHolder.getMRootView());
 
-        // 评论
-        HomeDetailCommentHolder homeDetailCommentHolder = new HomeDetailCommentHolder();
-        fl_comment.addView(homeDetailCommentHolder.getMRootView());
-
     }
 
 //    @Override
     public void initData()
     {
-        String url = "https://www.v2ex.com/t/326059";
+//        String url = "https://www.v2ex.com/t/326059";
+        String url = mTopic.getDetailUrl();
+        Logger.i("detailUrl", url);
         HomeUtil.parseTopicWithDetailUrl(url, myHandler, this);
     }
 }

@@ -1,23 +1,20 @@
-package com.wutouqishi.v2ex_android.pager.impl;
+package com.wutouqishi.v2ex_android.ui.pager.impl;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.viewpagerindicator.TabPageIndicator;
 import com.wutouqishi.v2ex_android.R;
 import com.wutouqishi.v2ex_android.domain.Node;
-import com.wutouqishi.v2ex_android.pager.BasePager;
-import com.wutouqishi.v2ex_android.pager.BaseTopicPager;
-
-import org.w3c.dom.Text;
+import com.wutouqishi.v2ex_android.domain.Topic;
+import com.wutouqishi.v2ex_android.ui.pager.BasePager;
+import com.wutouqishi.v2ex_android.ui.pager.BaseTopicPager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by gengjie on 16/9/7.
@@ -72,6 +69,8 @@ public class HomePager extends BasePager
 
         vp_topics.setAdapter(new TopicPagerAdapter());
         tpi_title.setViewPager(vp_topics);
+
+
     }
 
     class TopicPagerAdapter extends PagerAdapter
@@ -99,7 +98,10 @@ public class HomePager extends BasePager
             View view = pager.mRootView;
             container.addView(view);
 
+
             pager.initData();
+
+
             return view;
         }
 

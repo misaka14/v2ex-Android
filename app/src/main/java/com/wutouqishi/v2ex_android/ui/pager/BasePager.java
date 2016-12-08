@@ -1,25 +1,23 @@
-package com.wutouqishi.v2ex_android.pager;
+package com.wutouqishi.v2ex_android.ui.pager;
 
 import android.app.Activity;
-import android.provider.Settings;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import com.wutouqishi.v2ex_android.R;
 
-import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
-
 /**
  * Created by gengjie on 16/9/7.
  */
-public class BasePager
+public class BasePager<T>
 {
     public Activity mActivity;
 
     public View mRootView;
 
     public FrameLayout fl_content;
+
+    public boolean hasData;
 
     public BasePager(Activity activity)
     {
@@ -36,5 +34,8 @@ public class BasePager
         return view;
     }
 
-    public void initData(){}
+    public void initData()
+    {
+        hasData = true;
+    }
 }

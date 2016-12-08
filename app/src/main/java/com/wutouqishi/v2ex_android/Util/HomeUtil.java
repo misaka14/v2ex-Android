@@ -122,10 +122,12 @@ public class HomeUtil
 
 //                    Logger.init("parseTopicWithDetailUrl");
 
-                    Logger.log(INFO, "parseTopicWithDetailUrl", content, null);
+
                     content = content.replace("width=\"24\"", "width=\"40\"").replace("max-width: 24px; max-height: 24px;", "max-width: 40px; max-height: 40px").replace("?s=24", "?s=48");
                     topicDetail.setContent(content);
                     Logger.w("content11:", content);
+                    Logger.i("content123:", content);
+                    Logger.log(INFO, "parseTopicWithDetailUrl", content, null);
                     topicDetails.add(topicDetail);
 
 

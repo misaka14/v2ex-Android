@@ -1,4 +1,4 @@
-package com.wutouqishi.v2ex_android.pager.impl;
+package com.wutouqishi.v2ex_android.ui.pager.impl;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,7 +21,7 @@ import com.wutouqishi.v2ex_android.ui.activity.TopicDetailActivity;
 import com.wutouqishi.v2ex_android.util.HomeUtil;
 import com.wutouqishi.v2ex_android.domain.Topic;
 import com.wutouqishi.v2ex_android.global.GlobalConstants;
-import com.wutouqishi.v2ex_android.pager.BaseTopicPager;
+import com.wutouqishi.v2ex_android.ui.pager.BaseTopicPager;
 
 import org.xutils.common.util.DensityUtil;
 import org.xutils.image.ImageOptions;
@@ -42,7 +42,7 @@ public class HomeTopicPager extends BaseTopicPager implements AdapterView.OnItem
 
     private int currentPage;
 
-    private ArrayList<Topic> topics;
+
 
     private SwipeRefreshLayout srl_refresh;
 

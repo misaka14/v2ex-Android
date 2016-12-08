@@ -11,12 +11,12 @@ import android.view.Window;
 import android.widget.RadioGroup;
 
 import com.wutouqishi.v2ex_android.R;
-import com.wutouqishi.v2ex_android.pager.BasePager;
-import com.wutouqishi.v2ex_android.pager.impl.HomePager;
-import com.wutouqishi.v2ex_android.pager.impl.MessagePager;
-import com.wutouqishi.v2ex_android.pager.impl.MorePager;
-import com.wutouqishi.v2ex_android.pager.impl.NodePager;
-import com.wutouqishi.v2ex_android.pager.impl.NotificationPager;
+import com.wutouqishi.v2ex_android.ui.pager.BasePager;
+import com.wutouqishi.v2ex_android.ui.pager.impl.HomePager;
+import com.wutouqishi.v2ex_android.ui.pager.impl.MessagePager;
+import com.wutouqishi.v2ex_android.ui.pager.impl.MorePager;
+import com.wutouqishi.v2ex_android.ui.pager.impl.NodePager;
+import com.wutouqishi.v2ex_android.ui.pager.impl.NotificationPager;
 import com.wutouqishi.v2ex_android.ui.view.NoScrollViewPager;
 
 import org.xutils.view.annotation.ViewInject;
@@ -65,7 +65,11 @@ public class MainActivity extends Activity {
             @Override
             public void onPageSelected(int position) {
                 BasePager pager = pagers.get(position);
-                pager.initData();
+                if(pager.hasData == false)
+                {
+                    pager.initData();
+                }
+
             }
 
             @Override
@@ -123,6 +127,7 @@ public class MainActivity extends Activity {
             View view = pager.mRootView;
 
             container.addView(view);
+
 
             return view;
         }
