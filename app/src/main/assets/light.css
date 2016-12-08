@@ -1282,6 +1282,9 @@ a.btn_hero:hover {
 	border: 1px solid #e2e2e2;
 	padding: 6px 10px;
 }
+.markdown_body{
+	padding: 10px;
+}
 .highlight {
 	background: #f8f8f8 none repeat scroll 0 0;
 	border-radius: 2px;

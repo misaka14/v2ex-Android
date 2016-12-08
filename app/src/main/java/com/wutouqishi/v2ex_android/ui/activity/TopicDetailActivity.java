@@ -116,6 +116,7 @@ public class TopicDetailActivity extends BaseAcitivy
 //    @Override
     public void initData()
     {
-        HomeUtil.parseTopicWithDetailUrl(mTopic.getDetailUrl(), myHandler, this);
+        String url = "https://www.v2ex.com/t/326059";
+        HomeUtil.parseTopicWithDetailUrl(url, myHandler, this);
     }
 }

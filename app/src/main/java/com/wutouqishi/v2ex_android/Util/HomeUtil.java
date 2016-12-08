@@ -105,6 +105,7 @@ public class HomeUtil
                 try {
                     ArrayList topicDetails = new ArrayList();
 
+
                     Document doc = Jsoup.connect(url).get();
                     //System.out.println("doc:" + doc);
 
@@ -118,10 +119,13 @@ public class HomeUtil
                     String commentHtml = boxE.html();
 //                      System.out.println("commentHTML:" + commentHtml);
                     String content = "<!DOCTYPE HTML><html><meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0' name='viewport'><head> " + AssetsUtil.getAssetsFile("light.css", context)+ "</head><body>" + topicContentE.html() + commentHtml+ "</body></html>";
-                    topicDetail.setContent(content);
+
 //                    Logger.init("parseTopicWithDetailUrl");
-                    //Logger.i("content:", content);
+
                     Logger.log(INFO, "parseTopicWithDetailUrl", content, null);
+                    content = content.replace("width=\"24\"", "width=\"40\"").replace("max-width: 24px; max-height: 24px;", "max-width: 40px; max-height: 40px").replace("?s=24", "?s=48");
+                    topicDetail.setContent(content);
+                    Logger.w("content11:", content);
                     topicDetails.add(topicDetail);
 
 
