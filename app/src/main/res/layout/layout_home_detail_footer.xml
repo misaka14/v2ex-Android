@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    >
+
+
+        <ImageButton
+            android:id="@+id/ib_collection"
+            style="@style/TopicDetailImageButtonTheme"
+            android:src="@drawable/topic_collection_btn_selector" />
+
+        <ImageButton
+            android:id="@+id/ib_love"
+            style="@style/TopicDetailImageButtonTheme"
+            android:layout_toRightOf="@id/ib_collection"
+            android:src="@drawable/topic_love_ib_selector" />
+
+        <ImageButton
+            android:id="@+id/ib_prev"
+            style="@style/TopicDetailImageButtonTheme"
+            android:layout_toLeftOf="@+id/tv_page"
+            android:src="@mipmap/prev_normal"
+            />
+
+        <TextView
+            android:id="@+id/tv_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textSize="20sp"
+            android:textColor="#fff"
+            android:layout_centerInParent="true"
+            />
+
+        <ImageButton
+            android:id="@+id/ib_next"
+            style="@style/TopicDetailImageButtonTheme"
+            android:layout_toRightOf="@+id/tv_page"
+            android:src="@mipmap/next_normal"
+            />
+
+        <ImageButton
+            android:id="@+id/ib_refresh"
+            android:layout_toLeftOf="@+id/ib_reply"
+            style="@style/TopicDetailImageButtonTheme"
+            android:src="@mipmap/refresh_normal"
+            />
+
+        <ImageButton
+            android:id="@+id/ib_reply"
+            style="@style/TopicDetailImageButtonTheme"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/reply_normal" />
+
+</RelativeLayout>

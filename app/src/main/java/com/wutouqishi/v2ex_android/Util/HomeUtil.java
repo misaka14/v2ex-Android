@@ -39,8 +39,8 @@ public class HomeUtil
                     e.printStackTrace();
                 }
                 Elements cellItemEs = doc.select("div.item");
-                System.out.println("doc:" + doc);
-                System.out.println("cellItemEs:" + cellItemEs.size());
+//                System.out.println("doc:" + doc);
+//                System.out.println("cellItemEs:" + cellItemEs.size());
                 for (int i = 0; i < cellItemEs.size(); i++) {
                     Element cellItemE = cellItemEs.get(i);
                     System.out.println("i:" + i + "--cellItemE:" + cellItemE.text());
@@ -103,11 +103,9 @@ public class HomeUtil
             @Override
             public void run() {
                 try {
-                    ArrayList topicDetails = new ArrayList();
 
 
                     Document doc = Jsoup.connect(url).get();
-                    //System.out.println("doc:" + doc);
 
                     TopicDetail topicDetail = new TopicDetail();
 
@@ -116,47 +114,71 @@ public class HomeUtil
                     Element topicContentE = doc.select("div.topic_content").get(0);
                     Element boxE = doc.select("div.box").get(1);
 
+
                     Elements cells = boxE.select("div.cell");
                     Element lastCell = cells.get(cells.size() - 1);
 
+                    System.out.println("doc:" + doc.html());
                     String content;
                     String commentHtml;
-                    if (StringUtils.isEmpty(lastCell.attr("id")))
+
+                    // 判断是否存在分页
+                    if (StringUtils.isEmpty(lastCell.attr("id")))  // 不存在分页
                     {
                         commentHtml = boxE.html();
-//                      System.out.println("commentHTML:" + commentHtml);
-                        content = "<!DOCTYPE HTML><html><meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0' name='viewport'><head> " + AssetsUtil.getAssetsFile("light.css", context)+ "</head><body>" + topicContentE.html() + commentHtml+ "</body></html>";
-
                     }
-                    else
+                    else                                           // 存在分页
                     {
-                        StringBuffer sb = new StringBuffer();
-                        cells.remove(cells.size() - 1);
-                        cells.remove(1);
+                        // 把分页的cell去除掉
+//                        cells.remove(cells.size() - 1);
 
+                        // 如果当前页面是第一页的话
+                        Elements inners = boxE.select("div.inner");
+
+
+
+                        // 把正文和评论拼接出来
+                        StringBuffer sb = new StringBuffer();
                         for (Element cell : cells)
                         {
                             sb.append(cell.outerHtml());
                         }
+
+                        for (Element inner : inners)
+                        {
+                            if (!StringUtils.isEmpty(inner.attr("id")))
+                            {
+                                String html = inner.outerHtml();
+                                html = html.replace("class=\"inner\"", "class=\"cell\"");
+                                sb.append(html);
+                            }
+
+                        }
                         commentHtml = sb.toString();
+
+
+//                        Logger.i("maxPage:", boxE.select("a.page_current").text());
+                        // 取出当前页
+//                        topicDetail.setCurrentPage(boxE.select("a.page_current").text());
+
+
                     }
-                    content = "<!DOCTYPE HTML><html><meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0' name='viewport'><head> " + AssetsUtil.getAssetsFile("light.css", context)+ "</head><body>" + topicContentE.html() + commentHtml+ "</body></html>";
 
 
-                    //String commentHtml = boxE.html();
-//                      System.out.println("commentHTML:" + commentHtml);
-                    //content = "<!DOCTYPE HTML><html><meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0' name='viewport'><head> " + AssetsUtil.getAssetsFile("light.css", context)+ "</head><body>" + topicContentE.html() + commentHtml+ "</body></html>";
 
-//                    Logger.init("parseTopicWithDetailUrl");
+                    System.out.println("js:" + AssetsUtil.getAssetsFile("v2ex.js", context));
+                    content = "<!DOCTYPE HTML><html><meta content='width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0' name='viewport'><head> " + AssetsUtil.getAssetsFile("v2ex.js", context) + AssetsUtil.getAssetsFile("light.css", context) +  "</head><body>" + topicContentE.html() + commentHtml+ "</body></html>";
 
+                    // 把头像变大
+                    content = content.replace("width=\"24\"", "width=\"40\"");
+                    content = content.replace("max-width: 24px; max-height: 24px;", "max-width: 40px; max-height: 40px");
+                    content = content.replace("?s=24", "?s=48");
 
-                    content = content.replace("width=\"24\"", "width=\"40\"").replace("max-width: 24px; max-height: 24px;", "max-width: 40px; max-height: 40px").replace("?s=24", "?s=48");
                     topicDetail.setContent(content);
-                    Logger.w("content11:", content);
+                    System.out.println("content:123" + content);
                     Logger.i("content123:", content);
-                    Logger.log(INFO, "parseTopicWithDetailUrl", content, null);
-                    topicDetails.add(topicDetail);
 
+                    // 当前的页数
 
 
                     // 评论
@@ -190,7 +212,7 @@ public class HomeUtil
 //                    }
 
                     Message msg = Message.obtain();
-                    msg.obj = topicDetails;
+                    msg.obj = topicDetail;
                     handler.sendMessage(msg);
 
                 } catch (IOException e) {

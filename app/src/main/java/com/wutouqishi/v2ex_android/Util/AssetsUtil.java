@@ -14,7 +14,7 @@ public class AssetsUtil
     public static String getAssetsFile(String fileName, Context context)
     {
         try {
-            InputStreamReader isr = new InputStreamReader(context.getResources().getAssets().open("light.css"));
+            InputStreamReader isr = new InputStreamReader(context.getResources().getAssets().open(fileName));
 
             BufferedReader br = new BufferedReader(isr);
 

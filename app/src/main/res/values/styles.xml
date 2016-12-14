@@ -84,4 +84,85 @@
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_marginLeft">10dp</item>
     </style>
+
+    <!--
+        android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/ib_collection"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:scaleType="centerCrop"
+    -->
+    <style name="TopicDetailImageButtonTheme">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <!--
+        android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#19666666"
+    -->
+    <style name="MoreSettingVerticalLine">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">#19666666</item>
+    </style>
+
+    <style name="MoreSettingHorizontalLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">#19666666</item>
+    </style>
+
+    <style name="MoreSettingPlaceHolderView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <!--
+            <Button
+                    android:id="@+id/btn_follow"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:paddingTop="5dp"
+                    android:text="特别关注"
+                    android:drawableTop="@mipmap/mine_follow"
+
+                    />
+
+    -->
+    <style name="MoreSettingButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <!--
+        android:layout_width="78dp"
+            android:layout_height="36dp"
+            android:layout_toRightOf="@id/view_null"
+            android:layout_centerVertical="true"
+            android:textSize="15dp"
+            android:background="@drawable/more_login_btn_shape"
+            android:textColor="@color/AppColor"
+            android:text="登陆"
+    -->
+    <style name="MoreHeaderButton">
+        <item name="android:layout_width">90dp</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textSize">15dp</item>
+    </style>
 </resources>

@@ -27,6 +27,12 @@ public class TopicDetail
     /** 博客被查看次数 */
     int seeCount;
 
+    /** 当前页数 */
+    String currentPage;
+
+    /** 详情页面的链接 */
+    String detailUrl;
+
     public TopicDetail() {
     }
 
@@ -94,5 +100,21 @@ public class TopicDetail
 
     public void setSeeCount(int seeCount) {
         this.seeCount = seeCount;
+    }
+
+    public String getCurrentPage() {
+        return currentPage;
+    }
+
+    public void setCurrentPage(String currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    public String getDetailUrl() {
+        return detailUrl;
+    }
+
+    public void setDetailUrl(String detailUrl) {
+        this.detailUrl = detailUrl;
     }
 }

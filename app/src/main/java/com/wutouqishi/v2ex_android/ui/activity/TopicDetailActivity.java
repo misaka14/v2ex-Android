@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.orhanobut.logger.Logger;
 import com.wutouqishi.v2ex_android.R;
 import com.wutouqishi.v2ex_android.ui.holder.HomeDetailContentHolder;
+import com.wutouqishi.v2ex_android.ui.holder.HomeDetailFooterHolder;
 import com.wutouqishi.v2ex_android.ui.holder.HomeDetailHeaderHolder;
 import com.wutouqishi.v2ex_android.util.HomeUtil;
 import com.wutouqishi.v2ex_android.domain.Topic;
@@ -28,21 +29,23 @@ import java.util.ArrayList;
  */
 public class TopicDetailActivity extends BaseAcitivy
 {
-    private ArrayList<TopicDetail> topicComments = new ArrayList();
-
     private TopicDetail topicDetail;
+
+    private Topic mTopic;
+
+    private String mTopicDetailUrl;
 
     private Handler myHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
 
-            ArrayList topicDetails = (ArrayList) msg.obj;
-            topicDetail = (TopicDetail) topicDetails.get(0);
-//            System.out.println("topicDetails:" + topicDetails);
-
+            topicDetail = (TopicDetail) msg.obj;
+            topicDetail.setDetailUrl(mTopic.getDetailUrl());
             homeDetailContentHolder.setData(topicDetail);
+            homeDetailFooterHolder.setData(topicDetail);
             fl_loading.setVisibility(View.GONE);
+
         }
     };
 
@@ -61,19 +64,20 @@ public class TopicDetailActivity extends BaseAcitivy
     @ViewInject(R.id.fl_loading)
     private FrameLayout fl_loading;
 
-    private HomeDetailContentHolder homeDetailContentHolder;
+    @ViewInject(R.id.fl_footer)
+    private FrameLayout fl_footer;
 
-    private Topic mTopic;
+    private HomeDetailContentHolder homeDetailContentHolder;
+    private HomeDetailFooterHolder homeDetailFooterHolder;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_topic_detail);
-
-
         x.view().inject(this);
-
 
         mTopic = (Topic) getIntent().getSerializableExtra("topic");
         LogUtils.i("topicDetailUrl:" + mTopic.getDetailUrl());
@@ -82,9 +86,7 @@ public class TopicDetailActivity extends BaseAcitivy
         initData();
     }
 
-//    @Override
     public void initView() {
-//        super.initView();
 
         // 标题栏
         tv_tabbar_title.setText("阅读话题");
@@ -105,15 +107,63 @@ public class TopicDetailActivity extends BaseAcitivy
         homeDetailContentHolder = new HomeDetailContentHolder();
         fl_content.addView(homeDetailContentHolder.getMRootView());
 
+        // 底部工具栏
+        homeDetailFooterHolder = new HomeDetailFooterHolder() {
+
+            @Override
+            public void refresh() {
+                homeDetailContentHolder.refresh();
+            }
+
+            @Override
+            public void prevPage(int currentPage)
+            {
+                initData(currentPage);
+            }
+
+            @Override
+            public void nextPage(int currentPage)
+            {
+                initData(currentPage);
+            }
+        };
+
+        homeDetailFooterHolder.setCurrentPage(mTopic.getDetailUrl());
+        fl_footer.addView(homeDetailFooterHolder.getMRootView());
+
     }
 
-//    @Override
     public void initData()
     {
 //        String url = "https://www.v2ex.com/t/326059";
         String url = "https://www.v2ex.com/t/326182#reply119";  // 超过1百条评论
 //        String url = mTopic.getDetailUrl();
-        Logger.i("detailUrl", url);
+
+//        Logger.i("detailUrl", url);
+//        mTopic.setDetailUrl(url);
+        mTopicDetailUrl = url.substring(0, url.indexOf("#reply"));
+        initData(0);
+    }
+
+    private void initData(int currentPage)
+    {
+        String url;
+        if (currentPage > 0)
+        {
+            url = getDetailUrl(currentPage);
+        }
+        else
+        {
+            url = "https://www.v2ex.com/t/326182#reply119";
+        }
+
         HomeUtil.parseTopicWithDetailUrl(url, myHandler, this);
+    }
+
+    private String getDetailUrl(int currentPage)
+    {
+        String url = mTopicDetailUrl + "?p=" + currentPage;
+        mTopic.setDetailUrl(url);
+        return url;
     }
 }

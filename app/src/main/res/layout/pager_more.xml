@@ -1,13 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/AppColor"
+    >
 
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="登录"
-        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp">
+
+        <Button
+            android:id="@+id/btn_register"
+            style="@style/MoreHeaderButton"
+            android:layout_toLeftOf="@+id/view_null"
+            android:textColor="#fff"
+            android:background="@drawable/more_register_btn_shape"
+            android:text="注册"
+            />
+
+        <View
+            android:id="@+id/view_null"
+            android:layout_width="20dp"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true"/>
+
+        <Button
+            android:id="@+id/btn_login"
+            style="@style/MoreHeaderButton"
+            android:layout_toRightOf="@id/view_null"
+            android:background="@drawable/more_login_btn_shape"
+            android:textColor="@color/AppColor"
+            android:text="登陆"
+            />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#E7E7E7"
+        >
+
+        <LinearLayout
+            android:id="@+id/ll_personal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#fff"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="个人中心"
+                android:textColor="#212121"
+                android:textSize="15sp"
+                android:layout_margin="8dp"
+                />
+
+            <View style="@style/MoreSettingHorizontalLine"/>
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <Button
+                    android:id="@+id/btn_favourite"
+                    style="@style/MoreSettingButton"
+                    android:text="节点收藏"
+                    android:drawableTop="@mipmap/mine_favourite"
+                    android:onClick="onClick"
+                    />
+
+                <View style="@style/MoreSettingVerticalLine" />
+
+                <Button
+                    android:id="@+id/btn_follow"
+                    style="@style/MoreSettingButton"
+                    android:text="特别关注"
+                    android:drawableTop="@mipmap/mine_follow"
+                    android:onClick="onClick"
+                    />
+
+                <View style="@style/MoreSettingVerticalLine" />
+
+                <Button
+                    android:id="@+id/btn_collection"
+                    style="@style/MoreSettingButton"
+                    android:text="话题收藏"
+                    android:drawableTop="@mipmap/more_collection"
+                    android:onClick="onClick"
+                    />
+
+                <View style="@style/MoreSettingVerticalLine" />
+
+                <Button
+                    android:id="@+id/btn_topic"
+                    style="@style/MoreSettingButton"
+                    android:text="我的话题"
+                    android:drawableTop="@mipmap/mine_topic"
+                    android:onClick="onClick"
+                    />
+            </LinearLayout>
+
+            <View style="@style/MoreSettingHorizontalLine"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <Button
+                    android:id="@+id/btn_reply"
+                    style="@style/MoreSettingButton"
+                    android:text="我的回复"
+                    android:drawableTop="@mipmap/more_systemnoti"
+                    android:onClick="onClick"
+                    />
+
+                <View style="@style/MoreSettingVerticalLine" />
+
+                <Button
+                    android:id="@+id/btn_group"
+                    style="@style/MoreSettingButton"
+                    android:text="我的小组"
+                    android:drawableTop="@mipmap/more_group"
+                    android:onClick="onClick"
+
+                    />
+
+                <View style="@style/MoreSettingVerticalLine" />
+
+                <View style="@style/MoreSettingPlaceHolderView"/>
+
+                <View style="@style/MoreSettingPlaceHolderView"/>
+
+            </LinearLayout>
+
+            <View style="@style/MoreSettingHorizontalLine"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:background="#fff"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置"
+                android:textColor="#212121"
+                android:textSize="15sp"
+                android:layout_margin="8dp"
+                />
+
+            <View style="@style/MoreSettingHorizontalLine"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <Button
+                    android:id="@+id/btn_ad"
+                    style="@style/MoreSettingButton"
+                    android:text="广告中心"
+                    android:drawableTop="@mipmap/more_ad"
+                    android:onClick="onClick"
+                    />
+
+                <View style="@style/MoreSettingVerticalLine" />
+
+                <Button
+                    android:id="@+id/btn_privacystatement"
+                    style="@style/MoreSettingButton"
+                    android:text="隐私声明"
+                    android:drawableTop="@mipmap/more_privacystatement"
+                    android:onClick="onClick"
+                    />
+
+                <View style="@style/MoreSettingVerticalLine" />
+
+                <Button
+                    android:id="@+id/btn_project"
+                    style="@style/MoreSettingButton"
+                    android:text="项目源码"
+                    android:drawableTop="@mipmap/more_project"
+                    android:onClick="onClick"
+                    />
+
+                <View style="@style/MoreSettingVerticalLine" />
+
+                <Button
+                    android:id="@+id/btn_about"
+                    style="@style/MoreSettingButton"
+                    android:text="关于V2EX"
+                    android:drawableTop="@mipmap/more_about"
+                    android:onClick="onClick"
+                    />
+            </LinearLayout>
+
+            <View style="@style/MoreSettingHorizontalLine"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <Button
+                    android:id="@+id/btn_logout"
+                    style="@style/MoreSettingButton"
+                    android:text="退出帐号"
+                    android:drawableTop="@mipmap/more_logout"
+                    android:onClick="onClick"
+                    />
+
+                <View style="@style/MoreSettingVerticalLine" />
+
+                <View style="@style/MoreSettingPlaceHolderView"/>
+
+                <View style="@style/MoreSettingPlaceHolderView"/>
+
+                <View style="@style/MoreSettingPlaceHolderView"/>
+
+            </LinearLayout>
+
+            <View style="@style/MoreSettingHorizontalLine"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 
 </LinearLayout>
