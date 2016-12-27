@@ -33,6 +33,11 @@ public class MorePager extends BasePager
         fl_content.addView(view);
 
 
+        Button btn_login = (Button) view.findViewById(R.id.btn_login);
+        Button btn_register = (Button) view.findViewById(R.id.btn_register);
+        btn_login.setOnClickListener(new MoreButtonListener());
+        btn_register.setOnClickListener(new MoreButtonListener());
+
         // 设置Button图片大小
         LinearLayout ll_personal = (LinearLayout) view.findViewById(R.id.ll_personal);
         initSettingButton(ll_personal);
@@ -60,7 +65,13 @@ public class MorePager extends BasePager
                 case R.id.btn_login:
                 {
                     Intent intent = new Intent(UIUtils.getContext(), LoginActivity.class);
-                    UIUtils.getContext().startActivity(intent);
+                    // Context中有一个startActivity方法，Activity继承自Context，重载了startActivity方法。
+                    // 如果使用Activity的startActivity方法，不会有任何限制，而如果使用Context的startActivity方法的话
+                    // 就需要开启一个新的task。
+                    // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    // UIUtils.getContext().startActivity(intent);
+
+                    mActivity.startActivity(intent);
                     break;
                 }
 

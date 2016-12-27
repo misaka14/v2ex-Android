@@ -4,6 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/appicon"
@@ -12,7 +17,7 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:name=".global.V2exApplication"
         >
-        <activity android:name=".ui.activity.MainActivity" android:theme="@style/Theme.PageIndicatorDefaults">
+        <activity android:name=".ui.activity.LoginActivity" android:theme="@style/Theme.PageIndicatorDefaults">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -20,7 +25,8 @@
         </activity>
 
         <!--<activity android:name=".MainActivity"  android:theme="@style/Theme.PageIndicatorDefaults"/>-->
-        <activity android:name=".ui.activity.LoginActivity"/>
+        <!--<activity android:name=".ui.activity.LoginActivity"/>-->
+        <activity android:name=".ui.activity.MainActivity"/>
         <activity android:name=".ui.activity.TopicDetailActivity"/>
         <!--<activity android:name=".LoginActivity"/>-->
     </application>
